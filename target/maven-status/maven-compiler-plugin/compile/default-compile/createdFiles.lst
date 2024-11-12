@@ -38,8 +38,8 @@ com\mycompany\views\Books$5.class
 com\mycompany\views\Returns$7.class
 com\mycompany\views\Lendings$7.class
 com\mycompany\interfaces\DAOBooks.class
-com\mycompany\views\Returns$4.class
 com\mycompany\views\Users$2.class
-com\mycompany\db\Database.class
+com\mycompany\views\Returns$4.class
 com\mycompany\ilib\Dashboard$4.class
 com\mycompany\views\Lendings$4.class
+com\mycompany\db\Database.class

@@ -247,7 +247,7 @@ public class Lendings extends javax.swing.JPanel {
         jLabel2.setText("Buscar libro");
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(255, 255, 255));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
