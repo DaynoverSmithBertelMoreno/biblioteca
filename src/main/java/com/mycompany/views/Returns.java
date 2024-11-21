@@ -370,7 +370,7 @@ public class Returns extends javax.swing.JPanel {
             LocalDate fechaLimite;
             try {
                 fechaLimite = LocalDate.parse(fechaLimiteString, formatter);
-                JOptionPane.showMessageDialog(null, fechaLimite);
+//                JOptionPane.showMessageDialog(null, fechaLimite);
             } catch (DateTimeParseException e) {
                 JOptionPane.showMessageDialog(null, currentLending.getDate_limit());
                 javax.swing.JOptionPane.showMessageDialog(this, "Error al convertir la fecha límite. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -392,17 +392,18 @@ public class Returns extends javax.swing.JPanel {
                 libroIdTxt.setText("");
             }else{
 
-                double multa = 0;
+                double multa = 500;
                 int retrasoDias=(int) ChronoUnit.DAYS.between( fechaLimite,fechaHoy);
-                JOptionPane.showMessageDialog(null, "el usuario "+currentUser.getName()+" ha prestado el libro " + currentBook.getTitle()+" y ha sido multado por entregar tardia de "+retrasoDias+" dias por "+multa);
+                multa*=retrasoDias;
+                JOptionPane.showMessageDialog(null, "el usuario "+currentUser.getName()+" ha prestado el libro " + currentBook.getTitle()+" y ha sido multado por entregar tardia de "+retrasoDias+" dias por "+multa+" $");
                 
                 
-//                    currentLending.setDate_return(Utils.getFechaActual());
-//                    daoLendings.modificar(currentLending);
-//
-//                    // Modificamos el libro sumandole 1 en disponibilidad.
-//                    currentBook.setAvailable(currentBook.getAvailable() + 1);
-//                    daoBooks.modificar(currentBook);
+                    currentLending.setDate_return(Utils.getFechaActual());
+                    daoLendings.modificar(currentLending);
+
+                    // Modificamos el libro sumandole 1 en disponibilidad.
+                    currentBook.setAvailable(currentBook.getAvailable() + 1);
+                    daoBooks.modificar(currentBook);
             }
                 // Verificamos sanciones
                 int days = Utils.diferenciasDeFechas(Utils.stringToDate(currentLending.getDate_out()), new Date());

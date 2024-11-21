@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 02:23 PM
+-- Generation Time: Nov 21, 2024 at 12:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -47,7 +47,7 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`id`, `title`, `date`, `author`, `category`, `edit`, `lang`, `pages`, `description`, `ejemplares`, `stock`, `available`) VALUES
-('978-607-07-3696-9', 'Pedro Páramo', '1955-03-19', 'Juan Rulfo', 'Novela', '1ra Edición', 'Español', '124', 'Una historia de realismo mágico en Comala.', '5', 5, 0),
+('978-607-07-3696-9', 'Pedro Páramo', '1955-03-19', 'Juan Rulfo', 'Novela', '1ra Edición', 'Español', '124', 'Una historia de realismo mágico en Comala.', '5', 5, 1),
 ('978-607-31-8058-5', 'Como Agua Para Chocolate', '1989-09-01', 'Laura Esquivel', 'Novela', '1ra Edición', 'Español', '256', 'Una historia de amor y gastronomía mexicana.', '8', 8, 1),
 ('978-607-31-8074-5', 'El Alquimista', '1988-04-25', 'Paulo Coelho', 'Novela', '2da Edición', 'Español', '208', 'Un viaje de autodescubrimiento.', '8', 8, 1),
 ('978-84-204-8243-6', 'Don Quijote de la Mancha', '1605-01-16', 'Miguel de Cervantes', 'Clásico', 'Edición Completa', 'Español', '1344', 'La novela más destacada de la literatura española.', '12', 12, 1),
@@ -72,30 +72,6 @@ CREATE TABLE `lendings` (
   `date_return` varchar(255) DEFAULT NULL,
   `date_limit` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `lendings`
---
-
-INSERT INTO `lendings` (`id`, `user_id`, `book_id`, `date_out`, `date_return`, `date_limit`) VALUES
-(2, 1001234567, '9781234567800', '06-11-2024', '06-11-2024', ''),
-(3, 1001234567, '978-607-07-3696-9', '06-11-2024', '06-11-2024', ''),
-(4, 1001234567, '978-84-663-3242-0', '06-11-2024', '06-11-2024', ''),
-(5, 1001234567, '978-607-07-3696-9', '06-11-2024', '06-11-2024', ''),
-(6, 1001234567, '978-607-07-3696-9', '06-11-2024', '07-11-2024', ''),
-(7, 1001234567, '978-607-31-8058-5', '07-11-2024', '07-11-2024', ''),
-(8, 1001234567, '978-607-07-3696-9', '10-11-2024', '10-11-2024', ''),
-(9, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', ''),
-(10, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', ''),
-(11, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '21-11-2024'),
-(12, 1001234567, '978-607-31-8058-5', '12-11-2024', '12-11-2024', '21-11-2024'),
-(13, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '27-11-2024'),
-(14, 1002345678, '978-950-54-7097-7', '12-11-2024', '12-11-2024', '27-11-2024'),
-(15, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '20-11-2024'),
-(16, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '28-11-2024'),
-(17, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '15-11-2024'),
-(18, 1001234567, '978-607-07-3696-9', '12-11-2024', '12-11-2024', '21-11-2024'),
-(19, 1001234567, '978-607-07-3696-9', '10-11-2024', NULL, '11-11-2024');
 
 -- --------------------------------------------------------
 
@@ -205,7 +181,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `lendings`
 --
 ALTER TABLE `lendings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
