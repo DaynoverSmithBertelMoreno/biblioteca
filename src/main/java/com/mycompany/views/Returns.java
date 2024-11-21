@@ -8,6 +8,11 @@ import com.mycompany.interfaces.DAOLendings;
 import com.mycompany.interfaces.DAOUsers;
 import com.mycompany.utils.Utils;
 import java.awt.Color;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -352,34 +357,69 @@ public class Returns extends javax.swing.JPanel {
                 return;
             }
 
-            // Todo OK: Devolvemos libro.
-            currentLending.setDate_return(Utils.getFechaActual());
-            daoLendings.modificar(currentLending);
-            
-            // Modificamos el libro sumandole 1 en disponibilidad.
-            currentBook.setAvailable(currentBook.getAvailable() + 1);
-            daoBooks.modificar(currentBook);
-            
-            javax.swing.JOptionPane.showMessageDialog(this, "Libro ID: " + currentBook.getId() + " devuelto exitosamente por " + currentUser.getName() + ".\n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            folioTxt.setText("");
-            libroIdTxt.setText("");
-            
-            // Verificamos sanciones
-            int days = Utils.diferenciasDeFechas(Utils.stringToDate(currentLending.getDate_out()), new Date());
-            if (days > MAX_DAYS_RETURN) {
-                int daysDelayed = days - MAX_DAYS_RETURN;
-                int sancMoney = daysDelayed * COST_DAY_SANC;
-                
-                // Aumentamos sanción del usuario y en dinero.
-                currentUser.setSanctions(currentUser.getSanctions() + 1);
-                currentUser.setSanc_money(currentUser.getSanc_money() + sancMoney);
-                daoUsers.sancionar(currentUser);
-                javax.swing.JOptionPane.showMessageDialog(this, "¡USUARIO SANCIONADO POR ENTREGA A DESTIEMPO! ($" + sancMoney + ") \n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            //xd
+//            LocalDate fechaHoy = LocalDate.now();
+//            String fechaLimiteString = currentLending.getDate_limit();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//            LocalDate fechaLimite = LocalDate.parse(fechaLimiteString, formatter);
+
+
+            LocalDate fechaHoy = LocalDate.now();
+            String fechaLimiteString = currentLending.getDate_limit();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate fechaLimite;
+            try {
+                fechaLimite = LocalDate.parse(fechaLimiteString, formatter);
+                JOptionPane.showMessageDialog(null, fechaLimite);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, currentLending.getDate_limit());
+                javax.swing.JOptionPane.showMessageDialog(this, "Error al convertir la fecha límite. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
             }
-        } catch (Exception e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al prestar el libro. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
-            System.out.println(e.getMessage());
-        }
+
+
+            if(fechaLimite.isAfter(fechaHoy)){
+                // Todo OK: Devolvemos libro.
+                currentLending.setDate_return(Utils.getFechaActual());
+                daoLendings.modificar(currentLending);
+
+                // Modificamos el libro sumandole 1 en disponibilidad.
+                currentBook.setAvailable(currentBook.getAvailable() + 1);
+                daoBooks.modificar(currentBook);
+
+                javax.swing.JOptionPane.showMessageDialog(this, "Libro ID: " + currentBook.getId() + " devuelto exitosamente por " + currentUser.getName() + ".\n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                folioTxt.setText("");
+                libroIdTxt.setText("");
+            }else{
+
+                double multa = 0;
+                int retrasoDias=(int) ChronoUnit.DAYS.between( fechaLimite,fechaHoy);
+                JOptionPane.showMessageDialog(null, "el usuario "+currentUser.getName()+" ha prestado el libro " + currentBook.getTitle()+" y ha sido multado por entregar tardia de "+retrasoDias+" dias por "+multa);
+                
+                
+//                    currentLending.setDate_return(Utils.getFechaActual());
+//                    daoLendings.modificar(currentLending);
+//
+//                    // Modificamos el libro sumandole 1 en disponibilidad.
+//                    currentBook.setAvailable(currentBook.getAvailable() + 1);
+//                    daoBooks.modificar(currentBook);
+            }
+                // Verificamos sanciones
+                int days = Utils.diferenciasDeFechas(Utils.stringToDate(currentLending.getDate_out()), new Date());
+                if (days > MAX_DAYS_RETURN) {
+                    int daysDelayed = days - MAX_DAYS_RETURN;
+                    int sancMoney = daysDelayed * COST_DAY_SANC;
+
+                    // Aumentamos sanción del usuario y en dinero.
+                    currentUser.setSanctions(currentUser.getSanctions() + 1);
+                    currentUser.setSanc_money(currentUser.getSanc_money() + sancMoney);
+                    daoUsers.sancionar(currentUser);
+                    javax.swing.JOptionPane.showMessageDialog(this, "¡USUARIO SANCIONADO POR ENTREGA A DESTIEMPO! ($" + sancMoney + ") \n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al devolver el libro. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+                System.out.println(e.getMessage());
+            }
     }//GEN-LAST:event_buttonActionPerformed
 
     private void folioTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_folioTxtActionPerformed

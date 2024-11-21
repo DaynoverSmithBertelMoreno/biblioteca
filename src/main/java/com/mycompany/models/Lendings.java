@@ -14,6 +14,16 @@ public class Lendings {
     private String book_id;
     private String date_out;
     private String date_return;
+    private String date_limit; // fecha limite
+
+    public String getDate_limit() {
+        return date_limit;
+    }
+
+    public void setDate_limit(String date_limit) {
+        this.date_limit = date_limit;
+    }
+    
 
     public int getId() {
         return id;

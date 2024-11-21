@@ -16,11 +16,12 @@ public class DAOLendingsImpl extends Database implements DAOLendings {
     public void registrar(Lendings lending) throws Exception {
         try {
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO lendings(user_id, book_id, date_out,date_return) VALUES(?,?,?,?);");
+            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO lendings(user_id, book_id, date_out,date_return,date_limit) VALUES(?,?,?,?,?);");
             st.setInt(1, lending.getUser_id());
             st.setString(2, lending.getBook_id());
             st.setString(3, lending.getDate_out());
             st.setString(4, lending.getDate_return());
+            st.setString(5, lending.getDate_limit());
 
             st.executeUpdate();
             st.close();
@@ -68,6 +69,7 @@ public class DAOLendingsImpl extends Database implements DAOLendings {
                 lending.setBook_id(rs.getString("book_id"));
                 lending.setDate_out(rs.getString("date_out"));
                 lending.setDate_return(rs.getString("date_return"));
+                 lending.setDate_limit(rs.getString("date_limit"));
             }
             
             st.close();
@@ -97,6 +99,7 @@ public class DAOLendingsImpl extends Database implements DAOLendings {
                 lending.setBook_id(rs.getString("book_id"));
                 lending.setDate_out(rs.getString("date_out"));
                 lending.setDate_return(rs.getString("date_return"));
+                lending.setDate_limit(rs.getString("date_limit"));
                 lista.add(lending);
             }
             rs.close();

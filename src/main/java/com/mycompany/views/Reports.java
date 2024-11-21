@@ -36,7 +36,7 @@ public class Reports extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             // Limpiamos tabla
             model.setRowCount(0);
-            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getUser_id(), u.getBook_id(), u.getDate_out(), u.getDate_return()}));
+            dao.listar().forEach((u) -> model.addRow(new Object[]{u.getUser_id(), u.getBook_id(), u.getDate_out(), u.getDate_return(),u.getDate_limit()}));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -68,11 +68,11 @@ public class Reports extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Cedula", "ISBN", "Fecha de salida", "Fecha de entrega"
+                "Cedula", "ISBN", "Fecha de salida", "Fecha de entrega", "Fecha limite"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -83,6 +83,11 @@ public class Reports extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(18, 90, 173));
         jButton2.setText("Actualizar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         title.setText("Reportes");
 
@@ -127,6 +132,10 @@ public class Reports extends javax.swing.JPanel {
             .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

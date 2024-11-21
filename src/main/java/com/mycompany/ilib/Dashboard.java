@@ -37,7 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
         initComponents();
         InitStyles();
         setDate();
-       InitContent();
+        InitContent();
     }
     private void InitStyles(){
 //        mensaje.putClientProperty( "FlatLaf.style", "font: 200% $light.font" );
