@@ -96,6 +96,8 @@ public class Dashboard extends javax.swing.JFrame {
         btn_returns = new javax.swing.JButton();
         btn_books = new javax.swing.JButton();
         btn_users = new javax.swing.JButton();
+        reportMonth = new javax.swing.JButton();
+        btnLent = new javax.swing.JButton();
         header = new javax.swing.JPanel();
         navText = new javax.swing.JLabel();
         dateText = new javax.swing.JLabel();
@@ -211,6 +213,20 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        reportMonth.setText("Mes");
+        reportMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportMonthActionPerformed(evt);
+            }
+        });
+
+        btnLent.setText("prestado");
+        btnLent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLentActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
@@ -227,6 +243,11 @@ public class Dashboard extends javax.swing.JFrame {
             .addComponent(btn_users, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btn_books, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(reportMonth)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnLent))
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +267,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(btn_books, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btn_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(reportMonth)
+                    .addComponent(btnLent))
+                .addContainerGap())
         );
 
         header.setBackground(new java.awt.Color(25, 118, 210));
@@ -345,6 +371,16 @@ public class Dashboard extends javax.swing.JFrame {
         ShowJPanel(new Reports());
     }//GEN-LAST:event_btn_reportsActionPerformed
 
+    private void reportMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportMonthActionPerformed
+        // TODO add your handling code here:
+        ShowJPanel(new reportMonths());
+    }//GEN-LAST:event_reportMonthActionPerformed
+
+    private void btnLentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLentActionPerformed
+        // TODO add your handling code here:
+        ShowJPanel(new lent());
+    }//GEN-LAST:event_btnLentActionPerformed
+
     /*
      * @param args the command line arguments
      */
@@ -367,6 +403,7 @@ public class Dashboard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appName;
     private javax.swing.JPanel background;
+    private javax.swing.JButton btnLent;
     private javax.swing.JButton btn_books;
     private javax.swing.JButton btn_lends;
     private javax.swing.JButton btn_prin;
@@ -380,5 +417,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel mensaje;
     private javax.swing.JPanel menu;
     private javax.swing.JLabel navText;
+    private javax.swing.JButton reportMonth;
     // End of variables declaration//GEN-END:variables
 }
