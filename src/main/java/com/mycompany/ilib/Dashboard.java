@@ -14,7 +14,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import javax.swing.UIManager;
-import com.mycompany.views.Principal;
 import com.mycompany.views.Reports;
 import com.mycompany.views.Returns;
 import com.mycompany.views.UpBooks;
@@ -58,7 +57,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     
     private void InitContent(){
-      ShowJPanel(new Principal());
+      ShowJPanel(new Books());
     }
     
     public static void ShowJPanel(JPanel p){
@@ -90,7 +89,6 @@ public class Dashboard extends javax.swing.JFrame {
         menu = new javax.swing.JPanel();
         appName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        btn_prin = new javax.swing.JButton();
         btn_lends = new javax.swing.JButton();
         btn_reports = new javax.swing.JButton();
         btn_returns = new javax.swing.JButton();
@@ -116,22 +114,6 @@ public class Dashboard extends javax.swing.JFrame {
         appName.setText("iLib");
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn_prin.setBackground(new java.awt.Color(21, 101, 192));
-        btn_prin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_prin.setForeground(new java.awt.Color(255, 255, 255));
-        btn_prin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/home-outline.png"))); // NOI18N
-        btn_prin.setText("Principal");
-        btn_prin.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
-        btn_prin.setBorderPainted(false);
-        btn_prin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_prin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btn_prin.setIconTextGap(13);
-        btn_prin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_prinActionPerformed(evt);
-            }
-        });
 
         btn_lends.setBackground(new java.awt.Color(21, 101, 192));
         btn_lends.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -237,7 +219,6 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(menuLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(btn_prin, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btn_lends, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btn_returns, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(btn_users, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,9 +237,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(appName, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124)
-                .addComponent(btn_prin, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(174, 174, 174)
                 .addComponent(btn_lends, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(btn_returns, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,11 +320,6 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_prinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_prinActionPerformed
-        // TODO add your handling code here:
-        ShowJPanel(new Principal());
-    }//GEN-LAST:event_btn_prinActionPerformed
-
     private void btn_lendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lendsActionPerformed
         // TODO add your handling code here:
         ShowJPanel(new Lendings());
@@ -406,7 +380,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btnLent;
     private javax.swing.JButton btn_books;
     private javax.swing.JButton btn_lends;
-    private javax.swing.JButton btn_prin;
     private javax.swing.JButton btn_reports;
     private javax.swing.JButton btn_returns;
     private javax.swing.JButton btn_users;

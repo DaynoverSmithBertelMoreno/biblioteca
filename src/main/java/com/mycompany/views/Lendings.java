@@ -444,7 +444,17 @@ public class Lendings extends javax.swing.JPanel {
         SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
         String fechaFormateada = formato.format(fecha);
         
+        //xd
+        Date fechaActual = new Date();
+//        JOptionPane.showMessageDialog(null, fechaActual);
+//        JOptionPane.showMessageDialog(null, fecha);
+       
         
+        if(fecha.after(fechaActual)){
+//            JOptionPane.showMessageDialog(null, "la actual del jcalendar esta adelantada a hoy ");
+            
+
+
 
         // Validaciones para los campos
         if (folio.isEmpty() || bookId.isEmpty()) {
@@ -523,6 +533,13 @@ public class Lendings extends javax.swing.JPanel {
         } catch (Exception e) {
             javax.swing.JOptionPane.showMessageDialog(this, "Ocurrió un error al prestar el libro. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
+        }
+            
+            
+        }else if(fecha.before(fechaActual)){
+//            JOptionPane.showMessageDialog(null, "la actual del jcalendar esta atrasada a hoy ");
+            JOptionPane.showMessageDialog(null, "Ingrese un fecha que sea mayor a la de hoy");
+
         }
        // JOptionPane.showMessageDialog(null, fechaFormateada);
     }//GEN-LAST:event_buttonActionPerformed

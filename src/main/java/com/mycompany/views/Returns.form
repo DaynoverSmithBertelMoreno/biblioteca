@@ -51,7 +51,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="button" pref="294" max="32767" attributes="0"/>
+                      <Component id="button" pref="174" max="32767" attributes="0"/>
                       <Component id="libroIdTxt" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -120,9 +120,9 @@
                           <Component id="folioTxt" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
                           <Component id="libroIdLbl" min="-2" pref="26" max="-2" attributes="0"/>
-                          <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                          <Component id="libroIdTxt" min="-2" pref="20" max="-2" attributes="0"/>
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="libroIdTxt" min="-2" pref="21" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="button" min="-2" pref="47" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" min="-2" pref="370" max="-2" attributes="0"/>
@@ -191,6 +191,9 @@
         </Component>
         <Component class="javax.swing.JLabel" name="title">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Dialog" size="11" style="1"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Devolucion del libro"/>
           </Properties>
         </Component>

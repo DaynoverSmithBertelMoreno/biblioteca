@@ -27,7 +27,6 @@ com\mycompany\views\Books$3.class
 com\mycompany\views\Lendings$2.class
 com\mycompany\views\Reports$2.class
 com\mycompany\views\Users.class
-com\mycompany\ilib\Dashboard$9.class
 com\mycompany\views\Lendings.class
 com\mycompany\views\reportMonths$1.class
 com\mycompany\views\Returns$6.class
@@ -40,7 +39,6 @@ com\mycompany\views\Reports$1.class
 com\mycompany\views\Users$6.class
 com\mycompany\ilib\DAOUsersImpl.class
 com\mycompany\login\Login$1.class
-com\mycompany\views\Principal.class
 com\mycompany\views\Returns$8.class
 com\mycompany\login\Login.class
 com\mycompany\ilib\Dashboard$7.class

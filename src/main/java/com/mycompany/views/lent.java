@@ -82,7 +82,7 @@ public class lent extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "Nombre", "Prestado"
+                "Nombre", "Prestamos"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -193,7 +193,7 @@ public class lent extends javax.swing.JPanel {
       
         String query = "";
         if(userToggle.isSelected()){
-        query = "SELECT u.name as name, count(u.name) as count FROM lendings AS l JOIN books AS b ON l.book_id = b.id JOIN users AS u ON l.user_id = u.id group by u.name;";
+        query = "select concat(u.name,' ',u.last_name_p,' ',u.last_name_m) as name, count(u.name) as count FROM lendings AS l JOIN books AS b ON l.book_id = b.id JOIN users AS u ON l.user_id = u.id group by u.name;";
         }
         
         loadTable(query);

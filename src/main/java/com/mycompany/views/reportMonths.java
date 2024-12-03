@@ -30,16 +30,15 @@ public class reportMonths extends javax.swing.JPanel {
     }
 
     
-    private void LoadLendings(int op) {
+    private void LoadLendings(int op,String opYear) {
 //            JOptionPane.showMessageDialog(null,op);
             String r = String.format("%02d", op);
-
             String query = "SELECT CONCAT(u.name, ' ', u.last_name_p, ' ', u.last_name_m) AS NOMBRE, " +
                     "b.title, l.date_out, l.date_return, l.date_limit " +
                     "FROM lendings AS l " +
                     "JOIN books AS b ON l.book_id = b.id " +
                     "JOIN users AS u ON l.user_id = u.id " +
-                    "where l.date_out LIKE '%-"+r+"-%'";
+                    "where l.date_out LIKE '%-"+r+"-"+opYear+"';";
 //            JOptionPane.showMessageDialog(null, query);
 
             try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ilib", "root", "");
@@ -75,6 +74,7 @@ public class reportMonths extends javax.swing.JPanel {
         jTable2 = new javax.swing.JTable();
         cbxMonth = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        cbxYear = new javax.swing.JComboBox<>();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,6 +113,8 @@ public class reportMonths extends javax.swing.JPanel {
             }
         });
 
+        cbxYear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,7 +124,9 @@ public class reportMonths extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cbxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(26, 26, 26)
+                        .addComponent(cbxYear, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 765, Short.MAX_VALUE))
@@ -134,6 +138,7 @@ public class reportMonths extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
@@ -145,13 +150,14 @@ public class reportMonths extends javax.swing.JPanel {
         // TODO add your handling code here:
         
        int opMonth = 1+cbxMonth.getSelectedIndex();
-       
-       LoadLendings(opMonth);
+       String opYear = (String) cbxYear.getSelectedItem();
+       LoadLendings(opMonth,opYear);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxMonth;
+    private javax.swing.JComboBox<String> cbxYear;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
