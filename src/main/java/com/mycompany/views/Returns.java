@@ -367,7 +367,7 @@ public class Returns extends javax.swing.JPanel {
             // Validamos que el usuario tenga ese libro prestado.
             com.mycompany.models.Lendings currentLending = daoLendings.getLending(currentUser, currentBook);
             if (currentLending == null) {
-                javax.swing.JOptionPane.showMessageDialog(this, "No se ha podido encontrar el préstamo correspiendote a los datos ingresados. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "No se ha podido encontrar el préstamo correspondiente a los datos ingresados. \n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
                 libroIdTxt.requestFocus();
                 return;
             }
