@@ -197,24 +197,9 @@ public class Login extends javax.swing.JFrame {
     }
     
     private static boolean checkCredentials(String username, String password) {
-        
-        String query = "SELECT * FROM usuarios WHERE username = ? AND password = ?"; // Asegúrate de tener una tabla 'usuarios' con las columnas 'username' y 'password'
-
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/ilib", "root", "");
-             PreparedStatement statement = connection.prepareStatement(query)) {
-            System.out.println("conectado");
-            statement.setString(1, username);
-            statement.setString(2, password);
-            ResultSet resultSet = statement.executeQuery();
-
-            return resultSet.next(); // Si hay un resultado, las credenciales son correctas
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return false; // En caso de error o no encontrar el usuario
-    }
+    com.mycompany.db.Database db = new com.mycompany.db.Database();
+    return db.checkCredentials(username, password);
+}
     
     
     
@@ -232,7 +217,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {  
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
