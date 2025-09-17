@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.ilib;
+import javax.swing.ImageIcon;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMaterialLighterIJTheme;
 import com.mycompany.ilib.Dashboard;
@@ -17,23 +18,34 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import javax.swing.JFrame;
+import java.net.URL;
 
 /**
  *
  * @author scano
  */
 public class Login extends javax.swing.JFrame {
-//    String usuarioG = "admin";
+    //    String usuarioG = "admin";
 //    String passG = "123456";
     
+    private char defaultEchoChar;
+    private ImageIcon iconVisible;
+    private ImageIcon iconInvisible;
+
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        InitStyles();
+        defaultEchoChar = passwordTxt.getEchoChar();
 
+        // Cargar iconos de forma segura
+        iconVisible = loadIcon("/visible.png");
+        iconInvisible = loadIcon("/invisible.png");
+        if (iconInvisible != null) hidden.setIcon(iconInvisible);
+
+        InitStyles();
     }
 
     /**
@@ -67,6 +79,7 @@ public class Login extends javax.swing.JFrame {
         passwordTxt = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        hidden = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +111,13 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/security.png"))); // NOI18N
 
+        hidden.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invisible.png"))); // NOI18N
+        hidden.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hiddenMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,12 +132,14 @@ public class Login extends javax.swing.JFrame {
                             .addComponent(passwordLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userTxt))
-                        .addGap(15, 15, 15))
+                        .addGap(105, 105, 105))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(passwordTxt)))
-                .addGap(95, 95, 95))
+                        .addComponent(passwordTxt)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(hidden)
+                        .addGap(99, 99, 99))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(309, 309, 309)
                 .addComponent(loginButtonTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
@@ -137,7 +159,8 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(hidden))
                 .addGap(64, 64, 64)
                 .addComponent(loginButtonTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(70, Short.MAX_VALUE))
@@ -188,9 +211,30 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtActionPerformed
 
+    private void hiddenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hiddenMouseClicked
+        if (passwordTxt.getEchoChar() != 0) {
+            passwordTxt.setEchoChar((char) 0); // mostrar
+            if (iconVisible != null) hidden.setIcon(iconVisible);
+        } else {
+            passwordTxt.setEchoChar(defaultEchoChar); // ocultar
+            if (iconInvisible != null) hidden.setIcon(iconInvisible);
+        }
+        hidden.revalidate();
+        hidden.repaint();
+    }//GEN-LAST:event_hiddenMouseClicked
 
+    // Helper para cargar recursos y avisar si faltan
+    private ImageIcon loadIcon(String path) {
+        URL url = getClass().getResource(path);
+        if (url == null) {
+            System.err.println("No se encontró el recurso: " + path);
+            return null;
+        }
+        return new ImageIcon(url);
+    }
     
   
+    
     
     private void cerrarVentana(JFrame frame){
         frame.dispose();
@@ -200,10 +244,6 @@ public class Login extends javax.swing.JFrame {
     com.mycompany.db.Database db = new com.mycompany.db.Database();
     return db.checkCredentials(username, password);
 }
-    
-    
-    
-    
     
     
     
@@ -249,6 +289,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel hidden;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton loginButtonTxt;
