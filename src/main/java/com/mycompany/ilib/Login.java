@@ -66,6 +66,12 @@ public class Login extends javax.swing.JFrame {
         
         loginButtonTxt.putClientProperty( "FlatLaf.style", "font: bold $h3.regular.font" );
         loginButtonTxt.setForeground(Color.black);
+        
+        loginButtonTxt.putClientProperty("FlatLaf.style","font: bold $h3.regular.font");
+        loginButtonTxt.setForeground(Color.white);
+        
+        titleTxt.putClientProperty("FlatLaf.style","font: bold $h1.regular.font");
+        titleTxt.setForeground(Color.black);
         }
     
     @SuppressWarnings("unchecked")
@@ -80,6 +86,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         hidden = new javax.swing.JLabel();
+        titleTxt = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,7 +101,10 @@ public class Login extends javax.swing.JFrame {
         });
 
         loginButtonTxt.setBackground(new java.awt.Color(18, 90, 173));
+        loginButtonTxt.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        loginButtonTxt.setForeground(new java.awt.Color(255, 255, 255));
         loginButtonTxt.setText("Iniciar");
+        loginButtonTxt.setBorder(null);
         loginButtonTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginButtonTxtActionPerformed(evt);
@@ -118,6 +128,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        titleTxt.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        titleTxt.setText("Login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,17 +142,20 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userTxt))
-                        .addGap(105, 105, 105))
+                            .addComponent(userTxt)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(passwordLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(userLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(passwordTxt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(hidden)
-                        .addGap(99, 99, 99))))
+                        .addComponent(passwordTxt)))
+                .addGap(18, 18, 18)
+                .addComponent(hidden)
+                .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
                 .addGap(309, 309, 309)
                 .addComponent(loginButtonTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
@@ -148,7 +164,9 @@ public class Login extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addGap(27, 27, 27)
+                .addComponent(titleTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(userLblTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,6 +313,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton loginButtonTxt;
     private javax.swing.JLabel passwordLblTxt;
     private static javax.swing.JPasswordField passwordTxt;
+    private javax.swing.JLabel titleTxt;
     private javax.swing.JLabel userLblTxt;
     private static javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
