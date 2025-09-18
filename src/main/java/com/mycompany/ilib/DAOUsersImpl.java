@@ -16,7 +16,7 @@ public class DAOUsersImpl extends Database implements DAOUsers {
 
         try {
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO users(id,name, last_name_p, last_name_m, domicilio, tel) VALUES(?,?,?,?,?,?);");
+            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO users(id,name, last_name_p, last_name_m, address, phone) VALUES(?,?,?,?,?,?);");
             st.setInt(1, user.getId());
             st.setString(2, user.getName());
             st.setString(3, user.getLast_name_p());
@@ -37,7 +37,7 @@ public class DAOUsersImpl extends Database implements DAOUsers {
     public void modificar(Users user) throws Exception {
          try {
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("UPDATE users SET name = ?, last_name_p = ?, last_name_m = ?, domicilio = ?, tel = ? WHERE id = ?");
+            PreparedStatement st = this.conexion.prepareStatement("UPDATE users SET name = ?, last_name_p = ?, last_name_m = ?, address = ?, phone = ? WHERE id = ?");
             st.setString(1, user.getName());
             st.setString(2, user.getLast_name_p());
             st.setString(3, user.getLast_name_m());
@@ -85,16 +85,17 @@ public class DAOUsersImpl extends Database implements DAOUsers {
             
             lista = new ArrayList();
             ResultSet rs = st.executeQuery();
+            
             while(rs.next()) {
                 Users user = new Users();
                 user.setId(rs.getInt("id"));
                 user.setName(rs.getString("name"));
                 user.setLast_name_p(rs.getString("last_name_p"));
                 user.setLast_name_m(rs.getString("last_name_m"));
-                user.setDomicilio(rs.getString("domicilio"));
-                user.setTel(rs.getString("tel"));
-                user.setSanctions(rs.getString("sanctions"));
-                user.setSanc_money(rs.getInt("sanc_money"));
+                user.setDomicilio(rs.getString("address"));
+                user.setTel(rs.getString("phone"));
+               // user.setSanctions(rs.getString("sanctions"));
+               // user.setSanc_money(rs.getInt("sanc_money"));
                 lista.add(user);
             }
             rs.close();
@@ -123,10 +124,10 @@ public class DAOUsersImpl extends Database implements DAOUsers {
                 user.setName(rs.getString("name"));
                 user.setLast_name_p(rs.getString("last_name_p"));
                 user.setLast_name_m(rs.getString("last_name_m"));
-                user.setDomicilio(rs.getString("domicilio"));
-                user.setTel(rs.getString("tel"));
-                user.setSanctions(rs.getString("sanctions"));
-                user.setSanc_money(rs.getInt("sanc_money"));
+                user.setDomicilio(rs.getString("address")); 
+                user.setTel(rs.getString("phone"));
+//                user.setSanctions(rs.getString("sanctions"));
+//                user.setSanc_money(rs.getInt("sanc_money"));
             }
             rs.close();
             st.close();

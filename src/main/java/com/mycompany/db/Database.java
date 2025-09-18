@@ -12,7 +12,7 @@ public class Database {
     
     protected Connection conexion;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private final String DB_URL = "jdbc:mysql://localhost:3306/ilib";
+    private final String DB_URL = "jdbc:mysql://localhost:3306/db_library";
 
     private final String USER = "root";
     private final String PASS = "root";
@@ -43,7 +43,7 @@ public class Database {
      * @return true si las credenciales son válidas, false en caso contrario
      */
     public boolean checkCredentials(String username, String password) {
-        String query = "SELECT * FROM usuarios WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM user_admin WHERE username = ? AND password = ?";
         
         try {
             Conectar();

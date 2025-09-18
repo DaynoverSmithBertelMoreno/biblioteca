@@ -82,7 +82,7 @@ public class DAOBooksImpl extends Database implements DAOBooks {
         List<Books> lista = null;
         try {
             this.Conectar();
-            String Query = title.isEmpty() ? "SELECT * FROM books;" : "SELECT * FROM books WHERE title LIKE '%" + title + "%';";
+            String Query = title.isEmpty() ? "SELECT * FROM V_BOOKS;" : "SELECT * FROM V_BOOKS WHERE title LIKE '%" + title + "%';";
             PreparedStatement st = this.conexion.prepareStatement(Query);
             
             lista = new ArrayList();
@@ -98,8 +98,8 @@ public class DAOBooksImpl extends Database implements DAOBooks {
                 book.setLang(rs.getString("lang"));
                 book.setPages(rs.getString("pages"));
                 book.setDescription(rs.getString("description"));
-                book.setEjemplares(rs.getString("ejemplares"));
-                book.setStock(rs.getInt("stock"));
+//                book.setEjemplares(rs.getString("ejemplares"));
+//                book.setStock(rs.getInt("stock"));
                 book.setAvailable(rs.getInt("available"));
                 lista.add(book);
             }
