@@ -18,9 +18,13 @@ public class Books {
     private String lang;
     private String pages;
     private String description;
-    private String ejemplares;
-    private int stock;
+//    private String ejemplares;
+//    private int stock;
     private int available;
+    private int authorId;
+    private int categoryId;
+    private int publisherId;
+    private int languageId;
 
     public String getId() {
         return id;
@@ -94,21 +98,21 @@ public class Books {
         this.description = description;
     }
 
-    public String getEjemplares() {
-        return ejemplares;
-    }
-
-    public void setEjemplares(String ejemplares) {
-        this.ejemplares = ejemplares;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+//    public String getEjemplares() {
+//        return ejemplares;
+//    }
+//
+//    public void setEjemplares(String ejemplares) {
+//        this.ejemplares = ejemplares;
+//    }
+//
+//    public int getStock() {
+//        return stock;
+//    }
+//
+//    public void setStock(int stock) {
+//        this.stock = stock;
+//    }
 
     public int getAvailable() {
         return available;
@@ -116,6 +120,38 @@ public class Books {
 
     public void setAvailable(int available) {
         this.available = available;
+    }
+
+    public int getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        this.authorId = authorId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public int getPublisherId() {
+        return publisherId;
+    }
+
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
+    }
+
+    public int getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(int languageId) {
+        this.languageId = languageId;
     }
     
     

@@ -62,5 +62,34 @@ public class Utils {
             return null;
         }
     }
+
+    public static String parseDateToMysql(String input) throws Exception {
+        if (input == null || input.isBlank()) throw new Exception("Fecha vacía");
+        String trimmed = input.trim();
+        java.time.LocalDate date;
+
+        // Formato ya en yyyy-MM-dd
+        if (trimmed.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            try {
+                date = java.time.LocalDate.parse(trimmed);
+                return date.toString();
+            } catch (Exception e) {
+                throw new Exception("Fecha inválida");
+            }
+        }
+
+        // Formato dd/MM/yyyy
+        if (trimmed.matches("\\d{2}/\\d{2}/\\d{4}")) {
+            java.time.format.DateTimeFormatter f = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            try {
+                date = java.time.LocalDate.parse(trimmed, f);
+                return date.toString(); // ISO = yyyy-MM-dd
+            } catch (Exception e) {
+                throw new Exception("Fecha inválida");
+            }
+        }
+
+        throw new Exception("Formato de fecha no admitido (use dd/MM/yyyy o yyyy-MM-dd)");
+    }
     
 }
